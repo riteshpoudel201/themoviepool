@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html, body{
+    min-width: 360px;
+    /* overflow-x: hidden; */
+}
+
+/* Hide scrollbar but keep scrolling */
+.hide-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+  }
+  
+  ::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+  
