@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import CrossIcon from "../../assets/icons/CrossIcon";
+import HamburgerIcon from "../../assets/icons/HamburgerIcon";
 
 const menuItems = [
   { name: 'Home', path: '/' },
@@ -27,10 +28,7 @@ const NavMenu = () => {
         className="w-[25px] h-[25px] flex sm:hidden"
         onClick={() => setIsMenuOpen((prev) => !prev)}
       >
-        <img
-          src="../../assets/icons/HamburgerIcon.jsx"
-          className="w-full h-full object-contain"
-        />
+        <HamburgerIcon />
       </div>
 
       {/* Render Mobile or Tablet Menu */}
