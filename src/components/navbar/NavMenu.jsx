@@ -28,7 +28,7 @@ const NavMenu = () => {
         onClick={() => setIsMenuOpen((prev) => !prev)}
       >
         <img
-          src="/src/assets/icons/HamburgerMenu.svg"
+          src="../../assets/icons/HamburgerIcon.jsx"
           className="w-full h-full object-contain"
         />
       </div>
