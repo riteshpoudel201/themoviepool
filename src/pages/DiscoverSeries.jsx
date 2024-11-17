@@ -49,7 +49,7 @@ const DiscoverSeries = () => {
         description="Explore the latest and trending series from around the world"
       />
       <Filters filters={filters} onFilterChange={handleFilterChange} />
-      <ShowGrid shows={series} showType="series" loading={loading} error={error} />
+      <ShowGrid shows={series} showType="tv" loading={loading} error={error} />
     </div>
   );
 };
