@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { randomChar } from "../../utils/axios";
 import SearchCard from "../cards/SearchCard";
 
@@ -6,10 +6,22 @@ import SearchCard from "../cards/SearchCard";
 const SearchMovies = ({ fetchSearchShows }) => {
     const [searchList, setSearchList] = useState([]);
     const searchRef = useRef(null);
-    const fetchSearchList = async (query) => {
+
+    const fetchSearchList = useCallback(async (query) => {
       const movies = await fetchSearchShows(query);
       setSearchList(movies);
-    };
+    }, [fetchSearchShows]);
+    useEffect(() => {
+      const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+          fetchSearchList(searchRef.current.value || randomChar());
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }, [fetchSearchList]);
   
     return (
       <div className="flex flex-col justify-center items-center h-full">
