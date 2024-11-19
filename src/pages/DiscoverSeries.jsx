@@ -6,12 +6,14 @@ import Breadcrumb from "../components/discover/Breadcrumb";
 import Header from "../components/discover/Header";
 import Filters from "../components/discover/Filters";
 import ShowGrid from "../components/discover/ShowGrid";
+import Pagination from "../components/discover/Pagination";
 
 const DiscoverSeries = () => {
   const [filters, setFilters] = useState({
     language: "en",
     region: "US",
     includeAdult: false,
+    page: 1,
   });
   const [series, setSeries] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -50,6 +52,7 @@ const DiscoverSeries = () => {
       />
       <Filters filters={filters} onFilterChange={handleFilterChange} />
       <ShowGrid shows={series} showType="tv" loading={loading} error={error} />
+      <Pagination currentPage={filters.page} totalPages={500} onPageChange={handleFilterChange} pagePerGroup={10}/>
     </div>
   );
 };
