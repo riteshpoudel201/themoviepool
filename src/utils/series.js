@@ -128,13 +128,13 @@ export async function fetchSeriesImage(seriesId) {
 
 }
 
-export const fetchDiscoverSeries = async ({ language, region, includeAdult }) => {
+export const fetchDiscoverSeries = async ({ language, region, includeAdult, page }) => {
     const params = new URLSearchParams({
       language: `${language}-${region}`,
       region: region,
       include_adult: includeAdult,
       sort_by: 'popularity.desc',
-      page: '1'
+      page: page || '1'
     })
   
     const response = await axiosInstance.get(

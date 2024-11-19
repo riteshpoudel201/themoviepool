@@ -134,13 +134,13 @@ export async function fetchMovieImage(movieId) {
 
 }
 
-export const fetchDiscoverMovies = async ({ language, region, includeAdult }) => {
+export const fetchDiscoverMovies = async ({ language, region, includeAdult, page }) => {
     const params = new URLSearchParams({
         language: `${language}-${region}`,
         region: region,
         include_adult: includeAdult,
         sort_by: 'popularity.desc',
-        page: '1'
+        page: page
     })
   
     const response = await axiosInstance.get(

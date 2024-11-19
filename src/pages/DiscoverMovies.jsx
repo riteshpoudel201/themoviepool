@@ -7,11 +7,13 @@ import Breadcrumb from "../components/discover/Breadcrumb";
 import Filters from "../components/discover/Filters";
 import MovieGrid from "../components/discover/ShowGrid";
 import ShowGrid from "../components/discover/ShowGrid";
+import Pagination from "../components/discover/Pagination";
 const DiscoverMovies = () => {
   const [filters, setFilters] = useState({
     language: "en",
     region: "US",
     includeAdult: false,
+    page: 1
   });
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -50,6 +52,7 @@ const DiscoverMovies = () => {
       />
       <Filters filters={filters} onFilterChange={handleFilterChange} />
       <ShowGrid shows={movies} showType="movie" loading={loading} error={error} />
+      <Pagination currentPage={filters.page} totalPages={500} onPageChange={handleFilterChange} pagePerGroup={10}/>
     </div>
   );
 };
