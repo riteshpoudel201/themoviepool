@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import { fetchDiscoverMovies } from "../utils/movies";
+import { fetchDiscoverMovies, searchMovies } from "../utils/movies";
 import NavbarSubstutute from "../components/NavbarSubstutute";
 import Header from "../components/discover/Header";
 import Breadcrumb from "../components/discover/Breadcrumb";
@@ -8,6 +8,7 @@ import Filters from "../components/discover/Filters";
 import MovieGrid from "../components/discover/ShowGrid";
 import ShowGrid from "../components/discover/ShowGrid";
 import Pagination from "../components/discover/Pagination";
+import Banner from "../components/discover/Banner";
 const DiscoverMovies = () => {
   const [filters, setFilters] = useState({
     language: "en",
@@ -45,7 +46,7 @@ const DiscoverMovies = () => {
   return (
     <div className="container mx-auto px-4">
       <NavbarSubstutute />
-      <Breadcrumb title="Movies" />
+      <Banner title="Movies" fetchSearchShows={searchMovies}/>
       <Header
         title="Discover Movies"
         description="Explore the latest and trending movies from around the world"

@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import { fetchDiscoverSeries } from "../utils/series";
+import { fetchDiscoverSeries, searchSeries } from "../utils/series";
 import NavbarSubstutute from "../components/NavbarSubstutute";
 import Breadcrumb from "../components/discover/Breadcrumb";
 import Header from "../components/discover/Header";
 import Filters from "../components/discover/Filters";
 import ShowGrid from "../components/discover/ShowGrid";
 import Pagination from "../components/discover/Pagination";
+import Banner from "../components/discover/Banner";
 
 const DiscoverSeries = () => {
   const [filters, setFilters] = useState({
@@ -45,7 +46,7 @@ const DiscoverSeries = () => {
   return (
     <div className="container mx-auto px-4">
       <NavbarSubstutute />
-      <Breadcrumb title="Series" />
+      <Banner title="Series" fetchSearchShows={searchSeries} />
       <Header
         title="Discover Series"
         description="Explore the latest and trending series from around the world"
