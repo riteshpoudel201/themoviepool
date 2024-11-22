@@ -76,9 +76,16 @@ async function getVideoPath(data) {
 }
 
 export async function getYouTubeKey(showId, type) {
-    const videos = await axiosInstance.get(`${API_URL}/${type}/${showId}/videos`);
-    const path = await getVideoPath(videos);
-    return path;
+    try {
+        console.log("showId: ",showId);
+        console.log("type: ",type);
+        const videos = await axiosInstance.get(`${API_URL}/${type ==="series" ? "tv": type}/${showId}/videos`);
+        const path = await getVideoPath(videos);
+        return path;
+    }
+    catch (error) {
+        console.log("Error from the axios.js catch block of getYouTubeKey() function:", error);
+    }
 }
 
 export async function discoverMovies() {
@@ -111,6 +118,22 @@ export async function discoverTvShows() {
         const response = await axiosInstance.get(`${API_URL}/discover/tv/`);
         if (response.data) {
             return response.data;
+        }
+    }
+    catch (error) {
+        console.log("Error from the axios.js catch block of fetchMovies() function:", error);
+    }
+
+}
+export async function fetchTrailerShows(type) {
+    try {
+       
+        const response = await axiosInstance.get(`${API_URL}/trending/${type ==="series" ? "tv": type}/day`);
+        if (response.data) {
+            return await Promise.all(response.data.results.map(async (show) => ({
+                ...show,
+                videoKey: await getYouTubeKey(show.id, type),
+            })));
         }
     }
     catch (error) {
