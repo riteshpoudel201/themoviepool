@@ -17,3 +17,7 @@ export const debounce = (func, delay) => {
         timeout = setTimeout(() => func.apply(this, args), delay);
     };
 };
+
+export const getRuntime = (runtime) => {
+  return `${Math.floor(runtime / 60)}h ${runtime % 60}min`;
+};
