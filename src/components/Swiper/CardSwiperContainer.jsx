@@ -13,11 +13,7 @@ const CardSwiperContainer = ({ children, className }) => {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
                 }}
-                autoplay={{
-                    delay: 3000,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true,
-                }}
+                
                 loop={true}
                 breakpoints={{
                     320: {

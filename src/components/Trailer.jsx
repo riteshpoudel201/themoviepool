@@ -2,6 +2,7 @@
 import { useState } from "react";
 import CrossIcon from '../assets/icons/CrossIcon'
 import PlayIcon from '../assets/icons/PlayIcon'
+import Modal from "./Modal";
 
 const Trailer = ({ videoKey, isHide=false }) => {
   const [showTrailer, setShowTrailer] = useState(false);
@@ -27,7 +28,9 @@ const Trailer = ({ videoKey, isHide=false }) => {
       </button>
 
       {/* Trailer Modal */}
-      {showTrailer && <TrailerVideo videoKey={videoKey} handleCloseTrailer={handleCloseTrailer}/>}
+      <Modal isOpen={showTrailer} onClose={handleCloseTrailer}>
+        <TrailerVideo videoKey={videoKey} handleCloseTrailer={handleCloseTrailer}/>
+      </Modal>
 
     </div>
   );

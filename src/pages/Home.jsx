@@ -7,15 +7,17 @@ import TrendingSeries from "../components/Home/TrendingSeries"
 import AiringTodaySeries from "../components/Home/AiringTodaySeries"
 import TopratedMovies from "../components/Home/TopratedMovies"
 import TopratedSeries from "../components/Home/TopratedSeries"
+import LatestTrailer from "../components/Home/LatestTrailer"
 const Home = () => {
   return (
     <PageContainer>
       <Hero />
-      <PopularMovies />
       <TrendingMovies />
       <AiringTodaySeries />
+      <LatestTrailer />
       <TopratedMovies />
       <TopratedSeries />
+      <PopularMovies />
       <TrendingSeries />
       <Upcoming />
     </PageContainer>
