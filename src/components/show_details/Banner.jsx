@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { getRuntime } from "../../utils/common";
 import GradientText from "../GradientText";
 import { DateTime } from "luxon";
 const IMAGE_URL = import.meta.env.VITE_TMDB_IMAGE_BASE_PATH;
@@ -21,7 +22,12 @@ const Banner = ({ show }) => {
             {show?.title || show?.name}
           </GradientText>
         </h1>
-
+        <div className="flex flex-row gap-2 items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span>{getRuntime(show?.runtime)}</span>
+        </div>
         {show?.release_date && (
           <div className="flex flex-row gap-5 w-full sm:w-[20%] justify-between text-xl">
             Released On <span className="text-gray-800">{DateTime.fromISO(show?.release_date).toFormat('LLL dd ,yyyy')}</span>
