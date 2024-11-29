@@ -8,6 +8,7 @@ import AiringTodaySeries from "../components/Home/AiringTodaySeries"
 import TopratedMovies from "../components/Home/TopratedMovies"
 import TopratedSeries from "../components/Home/TopratedSeries"
 import LatestTrailer from "../components/Home/LatestTrailer"
+import Feedback from "../components/Home/Feedback"
 const Home = () => {
   return (
     <PageContainer>
@@ -20,6 +21,7 @@ const Home = () => {
       <PopularMovies />
       <TrendingSeries />
       <Upcoming />
+      <Feedback />
     </PageContainer>
   )
 }
