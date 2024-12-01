@@ -13,7 +13,11 @@ const Feedback = () => {
   const [email, setEmail] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [isToasterVisible, setIsToasterVisible] = useState(false);
-
+const clearForm = () => {
+  setName("");
+  setEmail("");
+  setValue("");
+}
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSending(true);
@@ -29,6 +33,7 @@ const Feedback = () => {
       if (response.data) {
         console.log(response.data);
         setIsToasterVisible(true);
+        clearForm();
       }
     } catch (error) {
       console.log(error);
