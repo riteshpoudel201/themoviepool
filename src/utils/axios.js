@@ -141,3 +141,17 @@ export async function fetchTrailerShows(type) {
     }
 
 }
+export async function fetchGenreNames(movieId, type) {
+    try {
+        const response = await axiosInstance.get(`${API_URL}/${type ==="series" ? "tv": type}/${movieId}`);
+        if (response.data) {
+            console.log("From genres:", response.data.genres)
+            return response.data.genres;
+        }
+       
+    }
+    catch (error) {
+        console.log("Error from the axios.js catch block of fetchGenreName() function:", error);
+    }
+
+}
