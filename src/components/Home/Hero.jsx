@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { SwiperSlide } from "swiper/react";
 import SwiperContainer from "../Swiper/HeroSwiperContainer";
 import HeroCard from "../cards/HeroCard";
@@ -18,6 +19,7 @@ const Hero = () => {
         const moviesData = await fetchNowPlaying();
         if (isMounted) {
           setMovies(moviesData);
+          console.log(movies);
           // Fetch details for the first movie (optional)
           if (moviesData.length > 0) {
             const showDetails = await fetchShowDetails(
@@ -69,10 +71,14 @@ const Hero = () => {
             <HeroCard
               imgSrc={`${IMAGE_URL}/original/${movie?.poster_path}`}
               imgAlt={movie?.original_title || "Movie Poster"}
-              movieTitle={movie?.title || "Untitled"}
+              movieTitle={movie?.title || movie?.name || "Untitled"}
               movieDesc={movie?.overview || "No description available."}
               type={movie?.type}
               showId={movie?.id}
+              genreIds = {movie?.genre_ids}
+              releasedDate = {movie?.released_date}
+              voteCount = {movie?.vote_count}
+              voteAverage = {movie?.vote_average}
             />
           </SwiperSlide>
         ))}
