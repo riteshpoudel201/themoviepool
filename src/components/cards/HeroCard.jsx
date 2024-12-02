@@ -14,7 +14,7 @@ const HeroCard = ({ imgSrc, imgAlt, movieTitle, movieDesc, type, showId }) => {
       </div>
 
       {/* Foreground Content */}
-      <div className="absolute bottom-[1rem] z-50 px-4 py-4 flex flex-col gap-3 w-full h-fit bg-gradient-to-t from-black to-transparent">
+      <div className="absolute bottom-0 z-50 px-4 py-4 flex flex-col gap-3 w-full h-fit bg-gradient-to-t from-black to-transparent">
         {/* Title */}
         <h1 className="font-bold text-3xl text-purple-500">{movieTitle}</h1>
 
