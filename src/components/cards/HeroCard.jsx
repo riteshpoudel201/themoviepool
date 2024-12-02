@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { fetchGenreNames } from "../../utils/axios";
 
 // genreIds = {movie?.genre_ids}
 // releasedDate = {movie?.released_date}
@@ -14,11 +16,20 @@ const HeroCard = ({
   movieDesc,
   type,
   showId,
-  genreIds,
   releasedDate,
   voteCount,
   voteAverage,
 }) => {
+const [genres, setGenres] = useState(null);
+
+useEffect(()=>{
+  const fetchGenreNameList= async () =>{
+    const genres = await fetchGenreNames(showId, type);
+    setGenres(genres);
+  }
+  fetchGenreNameList()
+},[showId, type])
+  
   return (
     <div className="relative z-10 w-full h-full bg-black/50">
       {/* Background Image */}
@@ -31,7 +42,7 @@ const HeroCard = ({
       </div>
 
       {/* Foreground Content */}
-      <div className="absolute bottom-0 z-50 px-4 py-4 flex flex-col gap-3 w-full h-fit bg-gradient-to-t from-black to-transparent">
+      <div className="absolute bottom-0 z-50 px-4 sm:px-12 py-4 flex flex-col gap-3 w-full h-fit bg-gradient-to-t from-black to-transparent">
         {/* Title */}
         <div className="flex flex-row justify-between sm:justify-normal gap-4">
           <h1 className="font-bold text-3xl text-purple-500">{movieTitle.length > 20 ?movieTitle.slice(0,20) + "..." : movieTitle}</h1>
@@ -61,11 +72,11 @@ const HeroCard = ({
           </div>
         )}
         {/* genre part starts here  */}
-        {genreIds.length > 0 && (
+        {genres && (
           <div className="genres mt-2 flex flex-col gap-1">
             <strong className="text-purple-800 drop-shadow-md">Genres </strong>
             <div className="flex flex-row flex-wrap gap-1">
-              {genreIds?.map((genre, index) => (
+              {genres?.map((genre, index) => (
                 <span
                   key={index}
                   className="badge bg-blue-600 text-white mr-2 px-2 py-1 rounded"
@@ -88,7 +99,7 @@ const HeroCard = ({
           to={`/show/${type}/${showId}`}
           className="w-full sm:w-fit bg-purple-400 hover:bg-purple-500 rounded-md text-white font-bold px-3 py-2 text-center"
         >
-          View Details
+          View More
         </NavLink>
       </div>
     </div>

@@ -22,11 +22,10 @@ const Hero = () => {
           console.log(movies);
           // Fetch details for the first movie (optional)
           if (moviesData.length > 0) {
-            const showDetails = await fetchShowDetails(
+             await fetchShowDetails(
               moviesData[0]?.id,
               moviesData[0]?.type
             );
-            console.log("Show details: ", showDetails);
           }
           setIsLoading(false);
         }
@@ -42,6 +41,8 @@ const Hero = () => {
       isMounted = false; // Cleanup on component unmount
     };
   }, []);
+
+  
 
   // Show loading or fallback UI if no movies are available
   if (isLoading) {
@@ -75,8 +76,7 @@ const Hero = () => {
               movieDesc={movie?.overview || "No description available."}
               type={movie?.type}
               showId={movie?.id}
-              genreIds = {movie?.genre_ids}
-              releasedDate = {movie?.released_date}
+              releasedDate = {movie?.released_date || movie?.first_air_date}
               voteCount = {movie?.vote_count}
               voteAverage = {movie?.vote_average}
             />
