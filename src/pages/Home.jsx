@@ -1,29 +1,51 @@
-import PageContainer from "../components/Container"
-import Hero from "../components/Home/Hero"
-import Upcoming from "../components/movies/UpcomingMovie"
-import PopularMovies from "../components/Home/PopularMovies"
-import TrendingMovies from "../components/Home/TrendingMovies"
-import TrendingSeries from "../components/Home/TrendingSeries"
-import AiringTodaySeries from "../components/Home/AiringTodaySeries"
-import TopratedMovies from "../components/Home/TopratedMovies"
-import TopratedSeries from "../components/Home/TopratedSeries"
-import LatestTrailer from "../components/Home/LatestTrailer"
-import Feedback from "../components/Home/Feedback"
+/* eslint-disable react/prop-types */
+import PageContainer from "../components/Container";
+import { lazy, Suspense } from "react";
+import { useInView } from "react-intersection-observer";
+import Hero from "../components/Home/Hero";
+
+const Upcoming = lazy(() => import("../components/movies/UpcomingMovie"));
+const PopularMovies = lazy(() => import("../components/Home/PopularMovies"));
+const TrendingMovies = lazy(() => import("../components/Home/TrendingMovies"));
+const TrendingSeries = lazy(() => import("../components/Home/TrendingSeries"));
+const AiringTodaySeries = lazy(() =>
+  import("../components/Home/AiringTodaySeries")
+);
+const TopratedMovies = lazy(() => import("../components/Home/TopratedMovies"));
+const TopratedSeries = lazy(() => import("../components/Home/TopratedSeries"));
+const LatestTrailer = lazy(() => import("../components/Home/LatestTrailer"));
+const Feedback = lazy(() => import("../components/Home/Feedback"));
+
+const LazyLoadComponent = ({ Component }) => {
+  const { ref, inView } = useInView({ triggerOnce: true });
+  console.log("Component in view:", inView);
+
+  return (
+    <div ref={ref}>
+      {inView && (
+        <Suspense fallback={"Loading..."}>
+          <Component />
+        </Suspense>
+      )}
+    </div>
+  );
+};
+
 const Home = () => {
   return (
     <PageContainer>
       <Hero />
-      <TrendingMovies />
-      <AiringTodaySeries />
-      <LatestTrailer />
-      <TopratedMovies />
-      <TopratedSeries />
-      <PopularMovies />
-      <TrendingSeries />
-      <Upcoming />
-      <Feedback />
+      <LazyLoadComponent Component={TrendingMovies} />
+      <LazyLoadComponent Component={AiringTodaySeries} />
+      <LazyLoadComponent Component={LatestTrailer} />
+      <LazyLoadComponent Component={TopratedMovies} />
+      <LazyLoadComponent Component={TopratedSeries} />
+      <LazyLoadComponent Component={PopularMovies} />
+      <LazyLoadComponent Component={TrendingSeries} />
+      <LazyLoadComponent Component={Upcoming} />
+      <LazyLoadComponent Component={Feedback} />
     </PageContainer>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
