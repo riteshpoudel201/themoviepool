@@ -10,7 +10,6 @@ const AiringTodaySeries = () => {
     let isMounted = true;     
       const fetchAllAiringTodaySeries = async () => {
           const series = await fetchAiringTodaySeries();
-          console.log("series: ", series);
           if (isMounted) {
               setAiringTodaySeries(series);
               setKey(prev => prev + 1);

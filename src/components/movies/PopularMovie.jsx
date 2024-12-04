@@ -10,7 +10,6 @@ const PopularMovie = () => {
       let isMounted = true;     
         const fetchAllPopularMovies = async () => {
             const movies = await fetchPopularMovies();
-            console.log("movies: ", movies);
             if (isMounted) {
                 setPopularMovies(movies);
                 setKey(prev => prev + 1);

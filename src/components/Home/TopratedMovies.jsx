@@ -10,7 +10,6 @@ const TopratedMovies = () => {
     let isMounted = true;
     const fetchAllTopRatedMovies = async () => {
       const movies = await fetchTopRatedMovies();
-      console.log("movies: ", movies);
       if (isMounted) {
         setTopRatedMovies(movies);
         setKey((prev) => prev + 1);

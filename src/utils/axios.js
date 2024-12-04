@@ -59,9 +59,7 @@ async function getVideoPath(data) {
     const trailers = data?.data?.results?.filter(video => video.type === "Trailer" && video.site === "YouTube");
     const teasers = data?.data?.results?.filter(video => video.type === "Teasers" && video.site === "YouTube");
     const clip = data?.data?.results?.filter(video => video.type === "Clip" && video.site === "YouTube");
-    console.log("Clip path:", clip)
-    console.log("Trailer path:", trailers)
-    console.log("Teasers path:", teasers)
+    
     if (trailers?.length > 0) {
         return trailers.map(trailer => `${trailer.key}`);
     }
@@ -77,8 +75,6 @@ async function getVideoPath(data) {
 
 export async function getYouTubeKey(showId, type) {
     try {
-        console.log("showId: ",showId);
-        console.log("type: ",type);
         const videos = await axiosInstance.get(`${API_URL}/${type ==="series" ? "tv": type}/${showId}/videos`);
         const path = await getVideoPath(videos);
         return path;
@@ -145,7 +141,6 @@ export async function fetchGenreNames(movieId, type) {
     try {
         const response = await axiosInstance.get(`${API_URL}/${type ==="series" ? "tv": type}/${movieId}`);
         if (response.data) {
-            console.log("From genres:", response.data.genres)
             return response.data.genres;
         }
        

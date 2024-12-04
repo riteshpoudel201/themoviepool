@@ -13,11 +13,12 @@ const Feedback = () => {
   const [email, setEmail] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [isToasterVisible, setIsToasterVisible] = useState(false);
-const clearForm = () => {
-  setName("");
-  setEmail("");
-  setValue("");
-}
+  
+  const clearForm = () => {
+    setName("");
+    setEmail("");
+    setValue("");
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSending(true);
@@ -31,7 +32,6 @@ const clearForm = () => {
       };
       const response = await axios.post(`${FEEDBACK_API_URL}/feedback`, Email);
       if (response.data) {
-        console.log(response.data);
         setIsToasterVisible(true);
         clearForm();
       }

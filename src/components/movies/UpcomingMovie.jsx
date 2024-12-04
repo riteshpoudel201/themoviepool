@@ -11,7 +11,6 @@ const Upcoming = () => {
     let isMounted = true;
     const fetchAllUpcomingMovies = async () => {
       const movies = await fetchUpcomingMovies();
-      console.log("movies: ", movies);
       if (isMounted) {
         setUpcomingMovies(movies);
         setKey((prev) => prev + 1);
