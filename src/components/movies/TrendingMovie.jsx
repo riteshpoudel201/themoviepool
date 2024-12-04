@@ -10,7 +10,6 @@ const TrendingMovie = () => {
     let isMounted = true;     
       const fetchAllTrendingMovies = async () => {
           const movies = await fetchTrendingMovies();
-          console.log("movies: ", movies);
           if (isMounted) {
               setTrendingMovies(movies);
               setKey(prev => prev + 1);

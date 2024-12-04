@@ -10,7 +10,6 @@ const TopRatedSeries = () => {
     let isMounted = true;
     const fetchAllTopRatedSeries = async () => {
       const series = await fetchTopRatedSeries();
-      console.log("series: ", series);
       if (isMounted) {
         setTopRatedSeries(series);
         setKey((prev) => prev + 1);

@@ -18,7 +18,6 @@ const Feedback = lazy(() => import("../components/Home/Feedback"));
 
 const LazyLoadComponent = ({ Component }) => {
   const { ref, inView } = useInView({ triggerOnce: true });
-  console.log("Component in view:", inView);
 
   return (
     <div ref={ref}>

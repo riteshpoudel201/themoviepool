@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { SwiperSlide } from "swiper/react";
 import SwiperContainer from "../Swiper/HeroSwiperContainer";
 import HeroCard from "../cards/HeroCard";
@@ -19,7 +18,6 @@ const Hero = () => {
         const moviesData = await fetchNowPlaying();
         if (isMounted) {
           setMovies(moviesData);
-          console.log(movies);
           // Fetch details for the first movie (optional)
           if (moviesData.length > 0) {
              await fetchShowDetails(

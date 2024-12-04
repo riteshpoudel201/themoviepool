@@ -8,7 +8,6 @@ const Trailer = ({ videoKey, isHide=false }) => {
   const [showTrailer, setShowTrailer] = useState(false);
 
   const handleButtonClick = () => {
-    console.log("Play trailer button clicked.")
     setShowTrailer(true);
   };
 

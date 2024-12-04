@@ -3,7 +3,6 @@
 import Trailer from "../Trailer"
 
 const PosterWIthTrailer = ({show,imageUrl,videoKey}) => {
-  console.log("From PosterWithTrailer:", videoKey);
   return (
     <div className="flex-1 max-w-full h-auto">
     <div className="flex max-w-full h-[256px] relative items-center justify-center">

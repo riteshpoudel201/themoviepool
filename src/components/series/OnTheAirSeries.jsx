@@ -10,7 +10,6 @@ const OnTheAirSeries = () => {
     let isMounted = true;     
       const fetchAllOnTheAirSeries = async () => {
           const series = await fetchOnTheAirSeries();
-          console.log("series: ", series);
           if (isMounted) {
               setOnTheAirSeries(series);
               setKey(prev => prev + 1);

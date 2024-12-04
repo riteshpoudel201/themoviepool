@@ -10,7 +10,6 @@ const PopularSeries = () => {
       let isMounted = true;     
         const fetchAllPopularSeries = async () => {
                 const series = await fetchPopularSeries();
-            console.log("series: ", series);
             if (isMounted) {
                 setPopularSeries(series);
                 setKey(prev => prev + 1);

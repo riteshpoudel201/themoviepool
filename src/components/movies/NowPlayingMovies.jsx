@@ -10,7 +10,6 @@ const NowPlayingMovies = () => {
       let isMounted = true;     
         const fetchAllNowPlayingMovies = async () => {
             const movies = await fetchNowPlayingMovies();
-            console.log("movies: ", movies);
             if (isMounted) {
                 setNowPlayingMovies(movies);
                 setKey(prev => prev + 1);

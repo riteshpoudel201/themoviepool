@@ -10,7 +10,6 @@ const TrendingSeries = () => {
     let isMounted = true;     
       const fetchAllTrendingSeries = async () => {
           const series = await fetchTrendingSeries();
-          console.log("series: ", series);
           if (isMounted) {
               setTrendingSeries(series);
               setKey(prev => prev + 1);
