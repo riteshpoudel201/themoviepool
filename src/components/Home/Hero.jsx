@@ -36,7 +36,7 @@ const Hero = () => {
     fetchAllMovies();
 
     return () => {
-      isMounted = false; // Cleanup on component unmount
+      isMounted = false; 
     };
   }, []);
 
@@ -59,10 +59,11 @@ const Hero = () => {
     );
   }
 
+  console.log("Hero: ",movies);
   return (
-    <div className="w-full h-[100vh] bg-black/70">
+    <div className="w-full h-[80vh] sm:h-[100vh] bg-black/70">
       <SwiperContainer
-        key={movies.length} // Reinitialize Swiper when movies change
+        key={movies.length} 
         className="w-full h-full"
       >
         {movies.map((movie, index) => (
@@ -74,7 +75,7 @@ const Hero = () => {
               movieDesc={movie?.overview || "No description available."}
               type={movie?.type}
               showId={movie?.id}
-              releasedDate = {movie?.released_date || movie?.first_air_date}
+              releasedDate = {movie?.release_date || movie?.first_air_date}
               voteCount = {movie?.vote_count}
               voteAverage = {movie?.vote_average}
             />

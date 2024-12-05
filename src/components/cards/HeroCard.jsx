@@ -3,11 +3,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { fetchGenreNames } from "../../utils/axios";
-
-// genreIds = {movie?.genre_ids}
-// releasedDate = {movie?.released_date}
-// voteCount = {movie?.vote_count}
-// voteAverage = {movie?.vote_average}
+import ViewMoreIcon from "../../assets/icons/ViewMoreIcon";
 
 const HeroCard = ({
   imgSrc,
@@ -20,16 +16,16 @@ const HeroCard = ({
   voteCount,
   voteAverage,
 }) => {
-const [genres, setGenres] = useState(null);
+  const [genres, setGenres] = useState(null);
 
-useEffect(()=>{
-  const fetchGenreNameList= async () =>{
-    const genres = await fetchGenreNames(showId, type);
-    setGenres(genres);
-  }
-  fetchGenreNameList()
-},[showId, type])
-  
+  useEffect(() => {
+    const fetchGenreNameList = async () => {
+      const genres = await fetchGenreNames(showId, type);
+      setGenres(genres);
+    };
+    fetchGenreNameList();
+  }, [showId, type]);
+
   return (
     <div className="relative z-10 w-full h-full bg-black/50">
       {/* Background Image */}
@@ -44,37 +40,22 @@ useEffect(()=>{
       {/* Foreground Content */}
       <div className="absolute bottom-0 z-50 px-4 sm:px-12 py-4 flex flex-col gap-3 w-full h-fit bg-gradient-to-t from-black to-transparent">
         {/* Title */}
-        <div className="flex flex-row justify-between sm:justify-normal gap-4">
-          <h1 className="font-bold text-3xl text-purple-500">{movieTitle.length > 20 ?movieTitle.slice(0,20) + "..." : movieTitle}</h1>
-          <span className="bg-purple-800 text-white p-2 rounded-md uppercase">
-            {type}
-          </span>
-        </div>
-        <div className="flex flex-row justify-between text-white w-full sm:w-1/2">
-          {voteCount && (
-            <div className="flex flex-col">
-              <span className="text-sm font-bold">Total Vote</span>
-              <span className="text-2xl text-purple-400">{voteCount}</span>
-            </div>
-          )}
-
-          {voteAverage && (
-            <div className="flex flex-col">
-              <span className="text-sm font-bold">Average Vote</span>
-              <span className="text-2xl text-purple-400">{voteAverage.toFixed(1)}</span>
-            </div>
-          )}
-        </div>
-        {releasedDate && (
-          <div className="flex flex-row justify-between">
-            <span className="text-white">Released Year</span>
-            <span className="text-white">{releasedDate?.split("-")[0]}</span>
+        <div className="flex flex-row sm:justify-normal gap-3">
+          <h1 className="font-bold text-6xl text-purple-500" title={ movieTitle}>
+            {movieTitle.length > 10
+              ? movieTitle.slice(0, 10) + "..."
+              : movieTitle}
+          </h1>
+          <div className="flex items-center justify-center">
+            <span className="bg-purple-800 text-white p-2 rounded-md uppercase">
+              {type}
+            </span>
           </div>
-        )}
+        </div>
+
         {/* genre part starts here  */}
         {genres && (
           <div className="genres mt-2 flex flex-col gap-1">
-            <strong className="text-purple-800 drop-shadow-md">Genres </strong>
             <div className="flex flex-row flex-wrap gap-1">
               {genres?.map((genre, index) => (
                 <span
@@ -89,17 +70,36 @@ useEffect(()=>{
         )}
         {/* genre part ends here  */}
 
+        {voteAverage && (
+          <div className="flex flex-col gap-0 sm:flex-row sm:gap-3 items-center">
+            <span className="text-white">Rating: </span>
+            <span className="text-purple-400 text-xl">
+              {voteAverage.toFixed(1)} ({voteCount}){" "}
+            </span>
+          </div>
+        )}
+
+        {releasedDate && (
+          <div className="flex flex-row justify-between items-center sm:justify-normal sm:gap-8">
+            <span className="text-white">Released Year :</span>
+            <span className="text-purple-400 text-xl">
+              {releasedDate.split("-")[0]}
+            </span>
+          </div>
+        )}
+
         {/* Description */}
         <p className="text-white w-full md:w-1/2 line-clamp-2">
-          {movieDesc.slice(0,50) + "..." || "No description available."}
+          {movieDesc.slice(0, 50) + "..." || "No description available."}
         </p>
 
         {/* View Details Button */}
         <NavLink
           to={`/show/${type}/${showId}`}
-          className="w-full sm:w-fit bg-purple-400 hover:bg-purple-500 rounded-md text-white font-bold px-3 py-2 text-center"
+          className="w-full sm:w-fit bg-purple-600 hover:bg-purple-700 hover:scale-[1.1] rounded-md text-white font-bold px-5 py-4 text-center flex flex-row gap-3 justify-center"
         >
-          View More
+          <span className="tracking-wider">View More</span>
+          <ViewMoreIcon />
         </NavLink>
       </div>
     </div>
