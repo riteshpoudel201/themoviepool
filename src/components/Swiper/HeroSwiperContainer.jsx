@@ -8,7 +8,7 @@ import "swiper/css/effect-fade";
 
 const SwiperContainer = ({children}) => {
   return (
-    <div className="w-full h-[100vh]">
+    <div className="w-full h-full">
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         navigation={{
