@@ -22,15 +22,78 @@ const Banner = ({ show }) => {
             {show?.title || show?.name}
           </GradientText>
         </h1>
-        <div className="flex flex-row gap-2 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span>{getRuntime(show?.runtime)}</span>
-        </div>
+
+        {show?.runtime && (
+          <div className="flex flex-row gap-2 items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{getRuntime(show?.runtime)}</span>
+          </div>
+        )}
+
+        {show?.number_of_seasons && (
+          <div className="flex flex-row gap-2 items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 64 64"
+              width="32"
+              height="32"
+              fill="currentColor"
+            >
+              <rect
+                x="8"
+                y="16"
+                width="48"
+                height="36"
+                rx="4"
+                ry="4"
+                fill="#9b59b6"
+              />
+              <path d="M8 20h48v32H8z" fill="#fff" opacity="0.2" />
+              <polygon points="28,26 42,32 28,38 28,26" fill="#8e44ad" />
+              <rect
+                x="12"
+                y="10"
+                width="40"
+                height="6"
+                rx="2"
+                ry="2"
+                fill="#c39bd3"
+              />
+              <rect
+                x="12"
+                y="6"
+                width="40"
+                height="4"
+                rx="1"
+                ry="1"
+                fill="#d7bde2"
+              />
+            </svg>
+            <div className="flex flex-row gap-4">
+            <span>{show?.number_of_seasons} Seasons</span>
+            <span>{show?.number_of_episodes} Episodes</span>
+            </div>
+          </div>
+        )}
         {show?.release_date && (
           <div className="flex flex-row gap-5 w-full sm:w-[20%] justify-between text-xl">
-            Released On <span className="text-gray-800">{DateTime.fromISO(show?.release_date).toFormat('LLL dd ,yyyy')}</span>
+            Released On{" "}
+            <span className="text-gray-800">
+              {DateTime.fromISO(show?.release_date).toFormat("LLL dd ,yyyy")}
+            </span>
           </div>
         )}
         <div className="genres mt-2 flex flex-col gap-1">
@@ -46,7 +109,7 @@ const Banner = ({ show }) => {
             ))}
           </div>
         </div>
-        
+
         {show?.tagline && (
           <p className="text-blue-800 px-3 py-4 rounded-md font-bold text-xl sm:text-3xl w-full sm:w-1/2  mt-0 sm:mt-3">
             {show?.tagline}
