@@ -5,7 +5,7 @@ import Trailer from "../Trailer"
 const PosterWIthTrailer = ({show,imageUrl,videoKey}) => {
   return (
     <div className="flex-1 max-w-full h-auto">
-    <div className="flex max-w-full h-[256px] relative items-center justify-center">
+    <div className="flex max-w-full h-[256px] lg:h-[400px] relative items-center justify-center">
       {/* Poster Image */}
       <img
         src={`${imageUrl}original/${show?.poster_path || show?.backdrop_path}`}
