@@ -54,6 +54,24 @@ export async function fetchShowDetails(showId, showType) {
     }
 
 }
+export async function fetchSimilarShows(showId, showType) {
+    try {
+        let URL_PATH;
+        if (showType === "movie") {
+            URL_PATH = "https://api.themoviedb.org/3/movie"
+        } else if (showType === "tv") {
+            URL_PATH = "https://api.themoviedb.org/3/tv"
+        }
+        const response = await axiosInstance.get(`${URL_PATH}/${showId}/similar`);
+        if (response.data) {
+            return response.data;
+        }
+    }
+    catch (error) {
+        console.log("Error from the axios.js catch block of fetchSimilarShows() function:", error);
+    }
+
+}
 
 async function getVideoPath(data) {
     const trailers = data?.data?.results?.filter(video => video.type === "Trailer" && video.site === "YouTube");
