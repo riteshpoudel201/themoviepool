@@ -8,6 +8,7 @@ import AdditionalInformation from "../components/show_details/AdditionalInformat
 import PosterWIthTrailer from "../components/show_details/PosterWIthTrailer";
 import CollapsibleInformation from "../components/show_details/CollapsibleInformation";
 import SimilarShows from "../components/show_details/SimilarShows";
+import RecommendedShows from "../components/show_details/RecommendedShows";
 
 const IMAGE_URL = import.meta.env.VITE_TMDB_IMAGE_BASE_PATH;
 
@@ -48,7 +49,10 @@ const ShowDetails = () => {
               <CollapsibleInformation show={show} />
             </div>
           </div>
+          <div className="flex flex-col">
           <SimilarShows type={type} showId={show?.id}/>
+          <RecommendedShows type={type} showId={show?.id}/>
+          </div>
         </div>
         {/* show details ends here  */}
       </div>
