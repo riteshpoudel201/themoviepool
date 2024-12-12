@@ -3,6 +3,7 @@ import SwiperContainer from "../Swiper/HeroSwiperContainer";
 import HeroCard from "../cards/HeroCard";
 import { fetchNowPlaying, fetchShowDetails } from "../../utils/axios";
 import { useEffect, useState } from "react";
+import ScrollBelow from "../ScrollBelow";
 
 const IMAGE_URL = import.meta.env.VITE_TMDB_IMAGE_BASE_PATH;
 
@@ -20,10 +21,7 @@ const Hero = () => {
           setMovies(moviesData);
           // Fetch details for the first movie (optional)
           if (moviesData.length > 0) {
-             await fetchShowDetails(
-              moviesData[0]?.id,
-              moviesData[0]?.type
-            );
+            await fetchShowDetails(moviesData[0]?.id, moviesData[0]?.type);
           }
           setIsLoading(false);
         }
@@ -36,11 +34,9 @@ const Hero = () => {
     fetchAllMovies();
 
     return () => {
-      isMounted = false; 
+      isMounted = false;
     };
   }, []);
-
-  
 
   // Show loading or fallback UI if no movies are available
   if (isLoading) {
@@ -59,13 +55,10 @@ const Hero = () => {
     );
   }
 
-  console.log("Hero: ",movies);
+  console.log("Hero: ", movies);
   return (
-    <div className="w-full h-[80vh] sm:h-[100vh] bg-black/70">
-      <SwiperContainer
-        key={movies.length} 
-        className="w-full h-full"
-      >
+    <div className="w-full h-[80vh] sm:h-[100vh] bg-black/70 relative">
+      <SwiperContainer key={movies.length} className="w-full h-full">
         {movies.map((movie, index) => (
           <SwiperSlide key={index} className="w-full h-full">
             <HeroCard
@@ -75,13 +68,14 @@ const Hero = () => {
               movieDesc={movie?.overview || "No description available."}
               type={movie?.type}
               showId={movie?.id}
-              releasedDate = {movie?.release_date || movie?.first_air_date}
-              voteCount = {movie?.vote_count}
-              voteAverage = {movie?.vote_average}
+              releasedDate={movie?.release_date || movie?.first_air_date}
+              voteCount={movie?.vote_count}
+              voteAverage={movie?.vote_average}
             />
           </SwiperSlide>
         ))}
       </SwiperContainer>
+      <ScrollBelow />
     </div>
   );
 };
