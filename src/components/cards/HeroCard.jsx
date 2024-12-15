@@ -71,7 +71,7 @@ const HeroCard = ({
         {/* genre part ends here  */}
 
         {voteAverage && (
-          <div className="flex flex-col gap-0 sm:flex-row sm:gap-3 items-center">
+          <div className="flex flex-col gap-0 sm:flex-row sm:gap-3 sm:items-center">
             <span className="text-white">Rating: </span>
             <span className="text-purple-400 text-xl">
               {voteAverage.toFixed(1)} ({voteCount}){" "}
