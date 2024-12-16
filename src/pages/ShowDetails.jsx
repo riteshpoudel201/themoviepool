@@ -21,13 +21,11 @@ const ShowDetails = () => {
     const fetchDetails = async () => {
       const show = await fetchShowDetails(id, type);
       const video_key = await getYouTubeKey(id, type);
-      console.log("Video Key: ", video_key);
       setVideoKey(video_key[0]);
       setShow(show);
     };
     fetchDetails();
   }, [id, type]);
-  console.log(show);
   return (
     <PageContainer>
       <div className="w-full h-full">
@@ -50,8 +48,12 @@ const ShowDetails = () => {
             </div>
           </div>
           <div className="flex flex-col">
-          <SimilarShows type={type} showId={show?.id}/>
-          <RecommendedShows type={type} showId={show?.id}/>
+            {show && (
+              <>
+                <SimilarShows type={type} showId={show?.id} />
+                <RecommendedShows type={type} showId={show?.id} />{" "}
+              </>
+            )}
           </div>
         </div>
         {/* show details ends here  */}
