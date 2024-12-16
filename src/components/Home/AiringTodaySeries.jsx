@@ -4,7 +4,7 @@ import ComponentWithDataAndTitle from '../ComponentWithDataAndTitle';
 
 const AiringTodaySeries = () => {
   const [airingTodaySeries, setAiringTodaySeries] = useState([]);
-  const [key, setKey] = useState(0);
+  const [reRenderKey, setReRenderKey] = useState(0);
 
   useEffect(() => {
     let isMounted = true;     
@@ -13,7 +13,7 @@ const AiringTodaySeries = () => {
           console.log("series: ", series);
           if (isMounted) {
               setAiringTodaySeries(series);
-              setKey(prev => prev + 1);
+              setReRenderKey(prev => prev + 1);
           }
       };
       fetchAllAiringTodaySeries();
@@ -23,7 +23,7 @@ const AiringTodaySeries = () => {
   }, []); 
 
   return (
-      <ComponentWithDataAndTitle title="Series Airing Today" data={airingTodaySeries} key={key} showType='tv' path='/series'/>
+    airingTodaySeries.length> 0 && <ComponentWithDataAndTitle title="Series Airing Today" data={airingTodaySeries} reRenderKey={reRenderKey} showType='tv' path='/series'/>
   )
 }
 

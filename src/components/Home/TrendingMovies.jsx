@@ -4,7 +4,7 @@ import ComponentWithDataAndTitle from '../ComponentWithDataAndTitle';
 
 const TrendingMovies = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
-  const [key, setKey] = useState(0);
+  const [reRenderKey, setReRenderKey] = useState(0);
 
   useEffect(() => {
     let isMounted = true;     
@@ -12,7 +12,7 @@ const TrendingMovies = () => {
           const movies = await fetchTrendingMovies();
           if (isMounted) {
               setTrendingMovies(movies);
-              setKey(prev => prev + 1);
+              setReRenderKey(prev => prev + 1);
           }
       };
       fetchAllTrendingMovies();
@@ -22,7 +22,7 @@ const TrendingMovies = () => {
   }, []); 
 
   return (
-      trendingMovies.length > 0 && <ComponentWithDataAndTitle title="Movies Trending Today" data={trendingMovies} key={key} path='/movies'/>
+      trendingMovies.length > 0 && <ComponentWithDataAndTitle title="Movies Trending Today" data={trendingMovies} reRenderKey={reRenderKey} path='/movies'/>
   )
 }
 

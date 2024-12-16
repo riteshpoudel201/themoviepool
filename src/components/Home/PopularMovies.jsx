@@ -4,7 +4,7 @@ import ComponentWithDataAndTitle from '../ComponentWithDataAndTitle';
 
 const PopularMovies = () => {
     const [popularMovies, setPopularMovies] = useState([]);
-    const [key, setKey] = useState(0);
+    const [reRenderKey, setReRenderKey] = useState(0);
 
     useEffect(() => {
       let isMounted = true;     
@@ -12,7 +12,7 @@ const PopularMovies = () => {
             const movies = await fetchPopularMovies();
             if (isMounted) {
                 setPopularMovies(movies);
-                setKey(prev => prev + 1);
+                setReRenderKey(prev => prev + 1);
             }
         };
         fetchAllPopularMovies();
@@ -22,7 +22,7 @@ const PopularMovies = () => {
     }, []); 
 // console.log("popularMovies: ",popularMovies);
   return (
-    popularMovies.length > 0 && <ComponentWithDataAndTitle title="most popular movies" data={popularMovies} key={key} path="/movies"/>
+    popularMovies.length > 0 && <ComponentWithDataAndTitle title="most popular movies" data={popularMovies} reRenderKey={reRenderKey} path="/movies"/>
   )
 }
 
