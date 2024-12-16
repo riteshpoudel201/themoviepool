@@ -3,9 +3,9 @@ import { Swiper } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css"; 
 import "swiper/css/navigation"; 
-const CardSwiperContainer = ({ children, className }) => {
+const CardSwiperContainer = ({ children, className,reRenderKey }) => {
     return (
-        <div className={`w-full ${className} group`}>
+        <div className={`w-full ${className} group`} key={reRenderKey}>
             <Swiper
                 modules={[Navigation, Autoplay]}
                 navigation={{
