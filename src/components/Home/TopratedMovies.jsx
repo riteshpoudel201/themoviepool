@@ -4,7 +4,7 @@ import ComponentWithDataAndTitle from "../ComponentWithDataAndTitle";
 
 const TopratedMovies = () => {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
-  const [key, setKey] = useState(0);
+  const [reRenderKey, setReRenderKey] = useState(0);
 
   useEffect(() => {
     let isMounted = true;
@@ -12,7 +12,7 @@ const TopratedMovies = () => {
       const movies = await fetchTopRatedMovies();
       if (isMounted) {
         setTopRatedMovies(movies);
-        setKey((prev) => prev + 1);
+        setReRenderKey((prev) => prev + 1);
       }
     };
     fetchAllTopRatedMovies();
@@ -22,7 +22,7 @@ const TopratedMovies = () => {
   }, []);
 
   return (
-    topRatedMovies.length > 0 && <ComponentWithDataAndTitle title="top rated movies" data={topRatedMovies} key={key} path="/movies"/>
+    topRatedMovies.length > 0 && <ComponentWithDataAndTitle title="top rated movies" data={topRatedMovies} reRenderKey={reRenderKey} path="/movies"/>
   );
 };
 

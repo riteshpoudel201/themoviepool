@@ -1,34 +1,35 @@
 import axios from "axios";
-import { useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import { useRef, useState } from "react";
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
 import Spinner from "../Spinner";
 import Toaster from "../Toaster";
 
 const FEEDBACK_API_URL = import.meta.env.VITE_FEEDBACK_API_URL;
 
 const Feedback = () => {
-  const [value, setValue] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isSending, setIsSending] = useState(false);
   const [isToasterVisible, setIsToasterVisible] = useState(false);
-  
+
+  const quillRef = useRef(null);
   const clearForm = () => {
     setName("");
     setEmail("");
-    setValue("");
+    quillRef.current.getEditor().setText("");
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSending(true);
+    
     try {
       const Email = {
         from: "Acme <onboarding@resend.dev>",
         to: "ritesh.poudel.34@gmail.com",
         name,
         email,
-        messageBody: value,
+        messageBody: quillRef.current.value,
       };
       const response = await axios.post(`${FEEDBACK_API_URL}/feedback`, Email);
       if (response.data) {
@@ -67,9 +68,8 @@ const Feedback = () => {
         />
         <div className="custom-quill w-full h-full">
           <ReactQuill
+            ref={quillRef}
             theme="snow"
-            value={value}
-            onChange={setValue}
             className="w-full h-full bg-white rounded-md p-2 "
           />
         </div>

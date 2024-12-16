@@ -17,11 +17,11 @@ const Banner = ({ show }) => {
       />
 
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 px-4 py-1 sm:py-8 flex flex-col gap-2 pointer-events-none bg-white/70 w-full sm:w-[98%] mx-auto rounded-t-xl">
-        <h1 className="text-4xl sm:text-5xl font-bold text-purple-800 ">
+        <div className="text-4xl sm:text-5xl font-bold text-purple-800 ">
           <GradientText className="!bg-gradient-from-t !bg-gradient-to-b !from-purple-800 !from-60% !to-50% !to-blue-800 shadow-white drop-shadow-2xl ">
             {show?.title || show?.name}
           </GradientText>
-        </h1>
+        </div>
 
         {show?.runtime && (
           <div className="flex flex-row gap-2 items-center">

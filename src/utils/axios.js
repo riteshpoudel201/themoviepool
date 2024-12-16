@@ -63,7 +63,7 @@ export async function fetchSimilarShows(showId, showType) {
             URL_PATH = "https://api.themoviedb.org/3/tv"
         }
         const response = await axiosInstance.get(`${URL_PATH}/${showId}/similar`);
-        if (response.data) {
+        if (response?.data) {
             return response.data;
         }
     }
@@ -81,7 +81,7 @@ export async function fetchRecommendedShows(showId, showType) {
             URL_PATH = "https://api.themoviedb.org/3/tv"
         }
         const response = await axiosInstance.get(`${URL_PATH}/${showId}/recommendations`);
-        if (response.data) {
+        if (response?.data) {
             return response.data;
         }
     }

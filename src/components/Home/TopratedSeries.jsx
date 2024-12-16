@@ -4,7 +4,7 @@ import ComponentWithDataAndTitle from "../ComponentWithDataAndTitle";
 
 const TopratedSeries = () => {
   const [topRatedSeries, setTopRatedSeries] = useState([]);
-  const [key, setKey] = useState(0);
+  const [reRenderKey, setReRenderKey] = useState(0);
 
   useEffect(() => {
     let isMounted = true;
@@ -12,7 +12,7 @@ const TopratedSeries = () => {
       const series = await fetchTopRatedSeries();
       if (isMounted) {
         setTopRatedSeries(series);
-        setKey((prev) => prev + 1);
+        setReRenderKey((prev) => prev + 1);
       }
     };
     fetchAllTopRatedSeries();
@@ -22,10 +22,11 @@ const TopratedSeries = () => {
   }, []);
 
   return (
-    <ComponentWithDataAndTitle
+
+    topRatedSeries.length > 0 && <ComponentWithDataAndTitle
       title="top rated series"
       data={topRatedSeries}
-      key={key}
+      reRenderKey={reRenderKey}
       showType='tv'
       path="/series"
     />
