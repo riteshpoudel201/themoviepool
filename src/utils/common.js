@@ -4,8 +4,7 @@ export const getUserRegion = async () => {
     try {
         const response = await axios.get(`https://ipinfo.io?token=${API_ACCESS_TOKEN}`);
         return response.data.country;
-    } catch (error) {
-        console.error("Error fetching user region:", error);
+    } catch {
         return "US";
     }
 };
