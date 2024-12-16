@@ -58,23 +58,25 @@ const Hero = () => {
   console.log("Hero: ", movies);
   return (
     <div className="w-full h-[80vh] sm:h-[100vh] bg-black/70 relative">
-      <SwiperContainer key={movies.length} className="w-full h-full">
-        {movies.map((movie, index) => (
-          <SwiperSlide key={index} className="w-full h-full">
-            <HeroCard
-              imgSrc={`${IMAGE_URL}/original/${movie?.poster_path}`}
-              imgAlt={movie?.original_title || "Movie Poster"}
-              movieTitle={movie?.title || movie?.name || "Untitled"}
-              movieDesc={movie?.overview || "No description available."}
-              type={movie?.type}
-              showId={movie?.id}
-              releasedDate={movie?.release_date || movie?.first_air_date}
-              voteCount={movie?.vote_count}
-              voteAverage={movie?.vote_average}
-            />
-          </SwiperSlide>
-        ))}
-      </SwiperContainer>
+      {movies && (
+        <SwiperContainer key={movies.length} className="w-full h-full">
+          {movies.map((movie, index) => (
+            <SwiperSlide key={index} className="w-full h-full">
+              <HeroCard
+                imgSrc={`${IMAGE_URL}/original/${movie?.poster_path}`}
+                imgAlt={movie?.original_title || "Movie Poster"}
+                movieTitle={movie?.title || movie?.name || "Untitled"}
+                movieDesc={movie?.overview || "No description available."}
+                type={movie?.type}
+                showId={movie?.id}
+                releasedDate={movie?.release_date || movie?.first_air_date}
+                voteCount={movie?.vote_count}
+                voteAverage={movie?.vote_average}
+              />
+            </SwiperSlide>
+          ))}
+        </SwiperContainer>
+      )}
       <ScrollBelow />
     </div>
   );
