@@ -1,13 +1,12 @@
 import axiosInstance from "../axiosInstance";
 import { randomChar } from "./axios";
-import { getUserRegion } from "./common";
 const API_URL = import.meta.env.VITE_TMDB_API_URL;
 
 export async function fetchMovies() {
     try {
         const response = await axiosInstance.get(`${API_URL}/search/movie?query=${randomChar()}`,{
             params: {
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         if (response.data) {
@@ -23,7 +22,7 @@ export async function fetchPopularMovies() {
     try {
         const response = await axiosInstance.get(`${API_URL}/movie/popular`,{
             params: {
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         if (response.data) {
@@ -39,7 +38,7 @@ export async function fetchTrendingMovies() {
     try {
         const response = await axiosInstance.get(`${API_URL}/trending/movie/day`,{
             params: {
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         if (response.data) {
@@ -55,7 +54,7 @@ export async function fetchTopRatedMovies() {
     try {
         const response = await axiosInstance.get(`${API_URL}/movie/top_rated`,{
             params: {
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         if (response.data) {
@@ -72,7 +71,7 @@ export async function fetchUpcomingMovies() {
         const response = await axiosInstance.get(`${API_URL}/movie/upcoming`,{
             params: {
                 page: '1',
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         console.log("response.data",response.data);
@@ -91,7 +90,7 @@ export async function fetchNowPlayingMovies() {
         const response = await axiosInstance.get(`${API_URL}/movie/now_playing`,{
             params: {
                 page: '1',
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         if (response.data) {
@@ -121,7 +120,7 @@ export async function fetchMovieImage(movieId) {
     try {
         const response = await axiosInstance.get(`${API_URL}/movie/${movieId}/images`,{
             params: {
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         if (response.data) {
