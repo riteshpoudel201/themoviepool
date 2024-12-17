@@ -1,6 +1,5 @@
 import axiosInstance from "../axiosInstance";
 import { randomChar } from "./axios";
-import { getUserRegion } from "./common";
 const API_URL = import.meta.env.VITE_TMDB_API_URL;
 
 export async function fetchSeries() {
@@ -20,7 +19,7 @@ export async function fetchOnTheAirSeries() {
     try {
         const response = await axiosInstance.get(`${API_URL}/tv/on_the_air?language=en-US`,{
             params: {
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         if (response.data) {
@@ -38,7 +37,7 @@ export async function fetchPopularSeries() {
         const response = await axiosInstance.get(`${API_URL}/tv/popular`,{
             params: {
                 page: '1',
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         if (response.data) {
@@ -54,7 +53,7 @@ export async function fetchTrendingSeries() {
     try {
         const response = await axiosInstance.get(`${API_URL}/trending/tv/day`,{
             params: {
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         if (response.data) {
@@ -71,7 +70,7 @@ export async function fetchTopRatedSeries() {
         const response = await axiosInstance.get(`${API_URL}/tv/top_rated`,{
             params: {
                 page: '1',
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         if (response.data) {
@@ -89,7 +88,7 @@ export async function fetchAiringTodaySeries() {
         const response = await axiosInstance.get(`${API_URL}/tv/airing_today`,{
             params: {
                 page: '1',
-                region: getUserRegion()
+                region: localStorage.getItem("region") || "US"
             }
         });
         if (response.data) {
