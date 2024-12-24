@@ -19,10 +19,10 @@ const SimilarShows = ({ showId, type }) => {
         Similar
       </h1>
       <div className="flex flex-col gap-3 h-[80vh] overflow-x-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-purple-800">
-        {shows &&
+        {shows?.length > 0 ?
           shows.map((show) => (
             <SimilarCard key={show.id} show={show} type={type} />
-          ))}
+          )):<p className="text-gray-500 text-sm w-full h-full rounded-md flex items-center justify-center bg-gray-200">Not available 😓</p>}
       </div>
     </div>
   );

@@ -19,10 +19,10 @@ const RecommendedShows = ({ showId, type }) => {
         Recommended
       </h1>
       <div className="flex flex-col gap-3 h-[80vh] overflow-x-auto snap-x snap-mandatory scrollbar-thin scrollbar-track-transparent scrollbar-thumb-purple-800">
-        {shows &&
+        {shows?.length > 0 ?
           shows.map((show) => (
             <RecommendedCard key={show.id} show={show} type={type} />
-          ))}
+          )): <p className="text-gray-500 bg-gray-200 text-sm w-full h-full rounded-md flex items-center justify-center">Not available 😓</p>}
       </div>
     </div>
   );
