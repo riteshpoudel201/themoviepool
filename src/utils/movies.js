@@ -74,7 +74,7 @@ export async function fetchUpcomingMovies() {
                 region: localStorage.getItem("region") || "US"
             }
         });
-        console.log("response.data",response.data);
+        
         if (response.data) {
             return response.data.results;
         }

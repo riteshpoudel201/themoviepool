@@ -12,7 +12,7 @@ const RecommendedShows = ({ showId, type }) => {
     };
     fetchRelatedShow();
   }, [showId, type]);
-  console.log("Recommended show lists: ", shows);
+  
   return (
     <div className="w-full flex flex-col gap-8 p-6 bg-white rounded-lg shadow-lg">
       <h1 className="text-4xl text-purple-800 tracking-wider leading-3 font-bold">
