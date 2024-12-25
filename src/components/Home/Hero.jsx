@@ -55,7 +55,6 @@ const Hero = () => {
     );
   }
 
-  console.log("Hero: ", movies);
   return (
     <div className="w-full h-[80vh] sm:h-[100vh] bg-black/70 relative">
       {movies && (
