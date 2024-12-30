@@ -25,7 +25,7 @@ const SearchMovies = ({ fetchSearchShows }) => {
   
     return (
       <div className="flex flex-col justify-center items-center h-full">
-        <h1 className="text-white text-4xl font-bold mb-5">
+        <h1 className="text-white text-center text-2xl lg:text-4xl font-bold mb-5">
           Welcome to The Movie Pool
         </h1>
         <div className="flex flex-row bg-white rounded-md p-2 ">
