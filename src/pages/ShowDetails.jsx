@@ -16,19 +16,22 @@ const ShowDetails = () => {
   const { id, type } = useParams();
   const [show, setShow] = useState();
   const [videoKey, setVideoKey] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchDetails = async () => {
+      setIsLoading(true);
       const show = await fetchShowDetails(id, type);
       const video_key = await getYouTubeKey(id, type);
       setVideoKey(video_key[0]);
       setShow(show);
+      setIsLoading(false);
     };
     fetchDetails();
   }, [id, type]);
   return (
     <PageContainer>
-      <div className="w-full h-full">
+      {isLoading ? <p className="w-[100vw] h-[100vh] flex items-center justify-center">Loading...</p> :<div className="w-full h-full">
         {/* banner starts here  */}
         <Banner show={show} />
         {/* banner ends here  */}
@@ -57,7 +60,7 @@ const ShowDetails = () => {
           </div>
         </div>
         {/* show details ends here  */}
-      </div>
+      </div>}
     </PageContainer>
   );
 };
